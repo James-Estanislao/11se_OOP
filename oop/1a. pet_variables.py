@@ -3,7 +3,7 @@ animal_category = 'Cat'
 age = 3
 vaccinated = True
 ccard = '3423 2326 7543 1234'
-billing_address = '17 Park Drive, The Shire 2695'
+billing_address = '17 Drive Street, The Shire 2695'
 owner_name = 'Alex Ngyuen'
 account_balance = 129.95
 
@@ -15,3 +15,21 @@ account_balance = 129.95
 #4 Prompt user for updated credit card number and save new number
 #5 Change owner name to Alex Jones
 #6 Subtract $25 from account balance
+
+name = 'Bonnie'
+animal_category = 'Cat'
+age = 4
+vaccinated = False
+ccard = input("Please enter new credit card number. ")
+billing_address = '17 Park Street, The Shire 2695'
+owner_name = 'Alex Jones'
+account_balance = 129.95 - 25
+
+print(name,type(name))
+print(animal_category,type(animal_category))
+print(age,type(age))
+print(vaccinated,type(vaccinated))
+print(ccard,type(ccard))
+print(billing_address,type(billing_address))
+print(owner_name,type(owner_name))
+print(account_balance,type(account_balance))
