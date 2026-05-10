@@ -49,8 +49,13 @@ else:
 num = input('please enter Credit Card Number')
 if verify_credit_card(num) == True:
   print('VALID')
-  
+  account_balance = account_balance - 39
 else:
   print('INVALID')
 
 #4. Write and test a function to vaccinate Bonnie 
+
+print(vaccinated)
+def vaccinate():
+  global vaccinated 
+  vaccinated = True

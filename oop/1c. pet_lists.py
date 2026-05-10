@@ -16,5 +16,20 @@ Vaccination Status: False
 # In each activity test out that the printing of data is still valid
 
 #1. Add a new animal named Hootie, its a blowfish, it is 34 years
+
+
+
 #2. Vaccinate an unvaccinated animal (create vaccination)
 #3. Remove an animal and make sure that all the printing is correct
+
+names = ['Rocky', 'Foxy', 'Bella', 'Hootie']
+Species = [ 'Dog', 'Rabbit', 'Blowfish']
+age = [5,8,3,34]
+Vaccination = [True,True,True,False]
+
+for i in range(len(names)):
+    print('Pet name:', names[i])
+    print('Species:', Species[i] )
+    print('Age:', age[i])
+    print('Vaccinated:', Vaccination[i])
+    print(" ")
