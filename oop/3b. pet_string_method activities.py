@@ -7,14 +7,14 @@ class Pet:
         self.name = name
         self.category = category
         self.age = age
-        self.ccard = ccard
+        self.ccard = 'unknown '
         self.vaccinated = False
    
     def __str__(self):
-        my_status = 'name: ' + self.name + 'category: ' + self.category + 'age: ' + str(self.age)
+        my_status = 'name: ' +  self.name   +   'category: ' +  self.category + 'age: ' + str(self.age) +' Credit Card: ' + self.ccard + ' Vaccinated: ' + str(self.vaccinated)
         return my_status
 
-p1 = Pet('Engineer', 'Dog',)
+p1 = Pet('Engineer ', 'Dog ',)
 
 print(p1)
 

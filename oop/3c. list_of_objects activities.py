@@ -10,6 +10,19 @@ class Pet:
         self.ccard = 'unknown'
         self.vaccinated = False
 
+    def __str__(self):
+        my_status = 'name: ' +  self.name   +   'category: ' +  self.category + 'age: ' + str(self.age) +' Credit Card: ' + self.ccard + ' Vaccinated: ' + str(self.vaccinated)
+        return my_status
+
+p1 = Pet(name = 'Engineer ', category =  'Dog ', vaccinated = True)
+p2 = Pet(name = 'Claude',  category = 'Cat', age = 8 , vaccinated = True)
+p3 = Pet(name = 'Scotty boy', category = 'Snake', age = 6 , vaccinated = True)
+
+pets = [p1, p2, p3]
+
+for pet in pets:
+    print(pets)
+    print(' ')
 
 
 #ACTIVITIES:

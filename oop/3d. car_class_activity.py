@@ -4,19 +4,22 @@
 # - Create a __str__ method that prints make and model
 
 class Car:
-    def __init__(self,make,model,year,price=None):
+    def __init__(self,make,model,year,price=None,for_sale=False,):
         self.make = make
         self.model = model
         self.year = year
         self.price = price
+        self.for_sale = for_sale
 
     def __str__(self):
+        return '|Make: , '+str(self.make)+' |Model: , '+str(self.model)+'|Year: , '+str(self.year)+'|Price: , '+str(self.price)+'|For sale:, '+str(self.for_sale)+'|'
 
 
-c1 = Car('Mazda','6',2005)
+c1 = Car('Mazda','6',2005,'$56 987','red')
+c2 = Car('Sedan','3',2008,'$27 845','blue')
+c3 = Car('Minivan','4',2018,'$23 785','green')
 
-
-cars = [c1]
+cars = [c1,c2,c3]
 
 for car in cars:
     print(car)
