@@ -6,3 +6,19 @@
 import random
 
 class Fighter:
+    def __init__(self, name,health,weapon,shield):
+        self.name = name
+        self.__health = health
+        self.weapon = weapon
+        self.shield = shield
+    
+    def random_attack(self):
+        attak_power = random.randint(self.weapon/2, self.weapon*2)
+        return attak_power
+
+
+you = Fighter('you',100,60,20)
+
+
+print(you.weapon)
+print(you.random_attack())

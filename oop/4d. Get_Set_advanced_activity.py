@@ -43,12 +43,34 @@ class Pet:
         my_status = 'Name: ' + self._name +'\nCategory: ' + self.__category + '\nAge: ' + str(self.age) +'\nPayment status: ' + payment_status + '\nVaccinated: '+ str(self.vaccinated)
         return my_status
 
+    def get_older(self):
+        self.age += 1
+
+    def get_category(self):
+        return self.__category
+
+
+
 p1 = Pet(name='Bonnie', category='Dog')
 p2 = Pet('Clyde','Cat','Persian',12)
 p3 = Pet('Cindy', 'Dog',age = 3)
+p4 = Pet('Banjo', 'Dog','Beagle',5)
+p5 = Pet('Pyro', 'Spider','Mygalamorph',2)
+pets = [p1,p2,p3,p4,p5]
 
 
-pets = [p1,p2,p3]
+p1.get_older()
+p2.get_older()
+p3.get_older()
+p4.get_older()
+p5.get_older()
+
+
+
+for pet in pets:
+    if pet.get_category( ) == 'Dog':
+        print(pet)
+        print(' ')
 
 
 #ACTIVITIES:
