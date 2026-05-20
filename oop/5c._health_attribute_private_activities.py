@@ -32,3 +32,5 @@ class Fighter:
 
 you = Fighter('You',100,60,20)
 troll = Fighter('Troll',200,30,10)
+
+print(you.random_attack())
