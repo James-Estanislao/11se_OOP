@@ -40,7 +40,7 @@ class Pet:
         if len(self.__ccard) == 19:
             payment_status = 'registered'
 
-        my_status = 'Name: ' + self._name +'\nCategory: ' + self.__category + '\nAge: ' + str(self.age) +'\nPayment status: ' + payment_status + '\nVaccinated: '+ str(self.vaccinated)
+        my_status = 'Name: ' + self._name +'\nCategory: ' + self.__category + '\nAge: ' + str(self.age) +'\nPayment status: ' + payment_status + '\nVaccinated: '+ str(self.vaccinated) + '\nWeight: ' + str(self.weight)
         return my_status
 
     def get_older(self):
@@ -65,7 +65,7 @@ p3.get_older()
 p4.get_older()
 p5.get_older()
 
-
+p1.set_weight(new_weight=1369)
 
 for pet in pets:
     if pet.get_category( ) == 'Dog':
