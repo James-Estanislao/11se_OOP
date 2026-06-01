@@ -62,13 +62,14 @@ class Fighter:
 
 
     def create_character(self):
-        while self.stat_points >= 0:
+        while self.stat_points > 0:
             self.set_strength()
             self.set_speed()
             self.set_magic()
     
 
 
+    def 
 
 
 
@@ -78,5 +79,3 @@ You.create_character()
 
 
 print(You)
-
-
