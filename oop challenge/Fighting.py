@@ -1,7 +1,12 @@
+import random, time
+
+distance = 10
+
 class Fighter:
-    def __init__(self,name,health,weapon,armour,strength,speed,magic):
+    def __init__(self,name,health,energy,weapon,armour,strength,speed,magic):
         self.name = name
         self.health = health
+        self.energy = energy
         self.weapon = weapon
         self.armour = armour
         self.strength = strength
@@ -69,13 +74,111 @@ class Fighter:
     
 
 
-    def 
+    def melee_attack(self):
+        if distance == 0:
+            attack_power = random.randint(self.weapon//2, self.weapon*2)
+            attack_power += (self.strength*3)
+            self.energy -= 15
+            print('Attack power:', attack_power)
+            return attack_power
+        else:
+            print('your too far')
+
+
+    def defend(self,attack_power):
+        damage = attack_power - self.armour
+        if damage > 0:
+            print(self.name, 'took', damage, 'damage')
+            self.health -= damage
+        else:
+            print(self.name, 'defended the attack')
+
+    def walk_forward(self):
+        global distance
+        if self.energy < 25:
+            print('energy is too low')
+        elif distance == 0:
+            print('Your already in front of them')
+        else:
+            distance -= self.speed
+            self.energy -= 30
+            if distance < 0:
+                distance = 0
+            print('distance:', distance)
+        
+    def walk_backward(self):
+        global distance
+        if self.energy < 25:
+            print('energy is too low')
+        else:
+            distance += self.speed
+            self.energy -= 30
+
+    def rest(self):
+        self.energy += 45
+        self.health += 15
+
+    def is_dead(self):
+        if self.health == 0:
+            return True
+        else:
+            return False
+        
+
+     
+you = Fighter('You', 100,100, 30, 20, 0, 0 ,0)
+troll = Fighter('Troll',150,100, 30, 0, 6, 3, 1)
+
+
+print('when creating your character consider that: strength increases your damage, speed affects how far you walk' \
+'and magic allows you to use unique abilities that help you in different ways.')
+
+you.create_character()
 
 
 
-You = Fighter('You', 100, 30, 20, 0, 0 ,0)
+print(you)
+print(troll)
 
-You.create_character()
 
+print('controls:1 is for melee attack, 2 is to walk forward, 3 is to walk back, 4 is to rest')
 
-print(You)
+while True:
+    action = input('What do you do?')
+    action = int(action)
+    if action == 1:
+        troll.defend(you.melee_attack())
+        print(troll)
+        if troll.is_dead:
+            print('you win!')
+            break
+    elif action == 2:
+         print('you walk forwards')
+         you.walk_forward()
+    elif action == 3:
+        you.walk_backward()
+        print('you walk back')
+    elif action == 4:
+        print('you take a break')
+        you.rest() 
+        print(you)
+    else: 
+        print('please enter valid action.')
+        continue
+    time.sleep(2)
+    if troll.energy <= 25:
+        print('the troll kneels down')
+        troll.rest()
+        print(troll)
+    elif distance == 0:
+        you.defend(troll.melee_attack())
+        print(you)
+        if you.is_dead:
+            print('you died =( ')
+            break
+    elif troll.health <  40:
+        troll.walk_backward()
+        print('the troll stumbles back')
+    elif distance > 0:
+        troll.walk_forward()
+        print('the troll approaches you')
