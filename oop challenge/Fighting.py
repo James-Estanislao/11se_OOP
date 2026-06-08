@@ -14,6 +14,8 @@ class Fighter: #the fighter class being set up
         self.speed = speed
         self.magic = magic
         self.stat_points = 10  #this what is used for stat points
+        self.max_health = health
+        self.max_energy = energy
 
 
     def __str__(self): #this function turns objects in a class into a string so that when i print it out it looks neat
@@ -31,7 +33,7 @@ class Fighter: #the fighter class being set up
                 elif new_strength > self.stat_points: #cheks if player has eniugh stat points
                     print("You don't have enough stat points")
                     continue
-                self.strength = new_strength #converts the players characters strength into the player input
+                self.strength += new_strength #converts the players characters strength into the player input
                 self.stat_points = self.stat_points - self.strength
                 print(f'Your stat points are now at {self.stat_points} and your strength is now at {self.strength}')
                 break
@@ -50,7 +52,7 @@ class Fighter: #the fighter class being set up
                 elif new_speed > self.stat_points:
                     print("You don't have enough stat points")
                     continue
-                self.speed = int(new_speed)
+                self.speed += int(new_speed)
                 self.stat_points = self.stat_points - self.speed
                 print(f'Your stat points are now at {self.stat_points} and your speed is now at {self.speed}')
                 break
@@ -68,7 +70,7 @@ class Fighter: #the fighter class being set up
                 elif new_magic > self.stat_points:
                     print("You don't have enough stat points")
                     continue
-                self.magic = int(new_magic)
+                self.magic += int(new_magic)
                 self.stat_points = self.stat_points - self.magic
                 print(f'Your stat points are now at {self.stat_points} and your speed is now at {self.magic}')
                 break
@@ -102,52 +104,52 @@ class Fighter: #the fighter class being set up
         if distance > 0: #to check if target is in range
             print('') #nothing happens if target is out of range
         elif self.armour > 0: #checks if target has armour
-            damage = attack_power - self.armour #if target has armour the damage recieved is reduced by targets armour
-            self.armour -= (damage//2) #targets armour takes a bit off damage
-            if damage > 0: 
-                print(self.name, 'took', damage, 'damage')
-                self.health -= damage #if damage is calculated higher than 0 health is taken from the target
-            else:
-                print(self.name, 'defended the attack') #if damage calcualted is 0 or less the target fully defends the attack
+            self.armour -= round(attack_power*0.5) #If target has armour then armour takes 50%
+            self.health -= round(attack_power*0.3) #target then takes 30% damage to health and 20% damage is completely mitgated
+            print(self.name, 'took', round(attack_power*0.3), 'damage')
         else:
             self.health -= attack_power #if target is in range and had no armour the target takes all the damage to the health
             print(self.name, 'took', attack_power, 'damage')
 
 
     def walk_forward(self):
-        global distance
-        if self.energy < 25:
-            print('energy is too low')
-        elif distance == 0:
+        global distance #must use distance as global value
+        if self.energy < 25: #checks if player has enough energy to walk
+            print('energy is too low') 
+        elif distance == 0: #checks if the enemy is already infront of the player
             print('Your already in front of them')
         else:
-            distance -= self.speed
-            self.energy -= 30
+            distance -= self.speed 
+            self.energy -= 25
             if distance < 0:
                 distance = 0
             
         
     def walk_backward(self):
-        global distance
-        if self.energy < 25:
+        global distance #again must use distance as global value
+        if self.energy < 25: #checks if player has enough energy
             print('energy is too low')
         else:
-            distance += self.speed
-            self.energy -= 30
+            distance += self.speed #distance is increased
+            self.energy -= 25
             
     def rest(self):
         self.energy += 45
-        self.health += 15
+        self.health += 15 #characters energy and health are restored when they rest
+        if self.health > self.max_health: #checks if players health is over max health
+            self.health = self.max_health #if so this function doesn't allow health to go over max threshhold
+        if self.energy > self.max_energy: #the same thing can be said for energy in this function
+            self.energy = self.max_energy
 
     def is_dead(self):
-        if self.health <= 0:
-            return True
+        if self.health <= 0: #checks if character is dead
+            return True 
         else:
             return False
         
      
-you = Fighter('You', 100,100, 30, 20, 0, 0 ,0)
-troll = Fighter('Troll',150,100, 40, 10, 6, 3, 1)
+you = Fighter('You', 100,100, 30, 100, 0, 0 ,0)
+troll = Fighter('Troll',150,100, 40, 50, 6, 3, 1)
 
 
 print('when creating your character consider that:')
@@ -203,6 +205,7 @@ while True:
             print('the troll kneels down')
             troll.rest()
             print(troll)
+        print('The troll swings at you')
         you.defend(troll.melee_attack())
         print(you)
         if you.is_dead():
